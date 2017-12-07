@@ -23,7 +23,7 @@ uint32_t Orange = strip.Color(255,40,0);
 uint32_t Purple = strip.Color(200,0,211);
 uint32_t White = strip.Color(255,255,255);
 
-String mode = "off";
+String mode = "navlights";
 String colour = "red";
 int brightness = 25;
 int staticNth = 1;
@@ -78,6 +78,7 @@ void handleRoot() {
            <li>Chase: (<a href=\"/?mode=chase&n=2\">2</a> | <a href=\"/?mode=chase&n=3\">3</a> | <a href=\"/?mode=chase&n=5\">5</a> | <a href=\"/?mode=chase&n=10\">10</a> | <a href=\"/?mode=chase&n=15\">15</a> | <a href=\"/?mode=chase&n=20\">20</a> | <a href=\"/?mode=chase&n=25\">25</a>)</li>\
            <li>Random: (<a href=\"/?mode=random&n=1\">1</a> | <a href=\"/?mode=random&n=2\">2</a> | <a href=\"/?mode=random&n=3\">3</a> | <a href=\"/?mode=random&n=4\">4</a> | <a href=\"/?mode=random&n=5\">5</a>)</li>\
            <li><a href=\"/?mode=linein\">Line In</a></li>\
+           <li><a href=\"/?mode=navlights\">Nav Lights</a></li>\
          </ul>\
          \
          <h2>Colour</h2>\
@@ -165,6 +166,16 @@ void loop() {
     strip.setBrightness(in * 15);
     for(int i = 0; i < NEOPIXEL_LEDS; i+= staticNth) {
       strip.setPixelColor(i, getColour(i));
+    }
+  } else if (mode == "navlights") {
+    for (int i = 0; i < 5; i++) {
+      strip.setPixelColor(i, White);
+    }
+    for (int i = 70; i < 80; i++) {
+      strip.setPixelColor(i, Red);
+    }
+    for (int i = 145; i <= 150; i++) {
+      strip.setPixelColor(i, White);
     }
   }
 
